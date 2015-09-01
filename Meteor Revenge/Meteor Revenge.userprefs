@@ -1,6 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\EarthRotator.cs">
+    <Files>
+      <File FileName="Assets\CameraController.cs" Line="6" Column="41" />
+      <File FileName="Assets\PlayerController.cs" Line="14" Column="2" />
+      <File FileName="Assets\EarthRotator.cs" Line="7" Column="41" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
