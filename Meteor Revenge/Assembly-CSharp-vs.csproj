@@ -47,8 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CameraController.cs" />
-     <Compile Include="Assets\EarthRotator.cs" />
-     <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\earth\EarthRotator.cs" />
+     <Compile Include="Assets\meteor\MeteorController.cs" />
+     <Compile Include="Assets\player\PlayerController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
