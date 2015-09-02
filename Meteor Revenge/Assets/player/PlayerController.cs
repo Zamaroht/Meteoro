@@ -15,17 +15,11 @@ public class PlayerController : MonoBehaviour
 		acceleration = 0.15f;
 	}
 
-	void Update () 
-	{
-		
-	}
-
 	void FixedUpdate()
 	{
 		MovementInput ();
 		MagnetInput ();
 	}
-
 
 	void MovementInput()
 	{
