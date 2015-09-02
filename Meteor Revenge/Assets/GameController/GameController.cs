@@ -26,10 +26,10 @@ public class GameController : MonoBehaviour
 	void GenerateLevel()
 	{
 		//genera los elementos del mapa
-
+		Vector3 newBackGroundPos = new Vector3 (0, 0, 1);
 		Vector3 newEarthPos;
 
-		GameObject newBackground = (GameObject)Instantiate (background, Vector3.zero, Quaternion.identity); //general el fondo
+		GameObject newBackground = (GameObject)Instantiate (background, newBackGroundPos, Quaternion.identity); //general el fondo
 		newBackground.name = "Background";
 
 		for (int i = 0; i < 2; i++)	//genera el planeta

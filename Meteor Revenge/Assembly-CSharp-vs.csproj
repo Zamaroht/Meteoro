@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CameraController.cs" />
-     <Compile Include="Assets\GameController.cs" />
+     <Compile Include="Assets\GameController\GameController.cs" />
+     <Compile Include="Assets\GameController\MeteorGenerator.cs" />
+     <Compile Include="Assets\GameController\TrashGenerator.cs" />
      <Compile Include="Assets\earth\EarthRotator.cs" />
      <Compile Include="Assets\meteor\MeteorController.cs" />
      <Compile Include="Assets\player\PlayerController.cs" />
