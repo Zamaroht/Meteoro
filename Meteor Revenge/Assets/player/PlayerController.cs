@@ -5,10 +5,14 @@ public class PlayerController : MonoBehaviour
 {
 	// Se encarga de los controles de la nave
 
-	private float speed, minSpeed, maxSpeed, acceleration;
+	private float minSpeed, maxSpeed, acceleration;
+	private bool magnetSwitch;
+
+	public float speed;
 
 	void Start () 
 	{
+		magnetSwitch = false;
 		speed = 0.0f;
 		minSpeed = 0.015f;
 		maxSpeed = 0.15f;
@@ -58,9 +62,10 @@ public class PlayerController : MonoBehaviour
 
 	void MagnetInput()
 	{
-		if (Input.GetKey (KeyCode.J))	// Magnet
+		if (Input.GetKeyDown (KeyCode.J))	// Magnet
 		{
-			
+			this.gameObject.transform.Find ("Magnet").GetComponent<MagnetScript> ().enabled = !magnetSwitch;
+			magnetSwitch = !magnetSwitch;
 		}
 	}
 }

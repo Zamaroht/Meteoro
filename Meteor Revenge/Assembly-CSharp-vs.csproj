@@ -52,6 +52,7 @@
      <Compile Include="Assets\GameController\TrashGenerator.cs" />
      <Compile Include="Assets\earth\EarthRotator.cs" />
      <Compile Include="Assets\meteor\MeteorController.cs" />
+     <Compile Include="Assets\player\MagnetScript.cs" />
      <Compile Include="Assets\player\PlayerController.cs" />
      <Compile Include="Assets\trash\TrashController.cs" />
  <Reference Include="UnityEngine.UI">

@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Camera\CameraController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\trash\TrashController.cs">
     <Files>
-      <File FileName="Meteor Revenge.sln" Line="1" Column="1" />
-      <File FileName="Assets\Camera\CameraController.cs" Line="105" Column="76" />
+      <File FileName="Assets\player\MagnetScript.cs" Line="54" Column="5" />
+      <File FileName="Assets\trash\TrashController.cs" Line="54" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
