@@ -4,7 +4,11 @@ using System.Collections;
 public class TrashController : MonoBehaviour 
 {
 	Transform target;
-	float speed = 1;
+	float targetSpeed;
+
+	Vector2 newPos;
+	public float speed = 1f;
+	float newPosX = 0, newPosY = 0;
 	public bool magnetedOnce, magnetedNow;
 
 	void Awake()
@@ -12,7 +16,8 @@ public class TrashController : MonoBehaviour
 		magnetedOnce = false;
 		magnetedNow = false;
 
-		speed = 15 / (speed * (this.transform.position.y + 5)); //la velocidad es inversamente proporcional a la distancia con la Tierra
+		speed = 2 * (15 / (speed * (this.transform.position.y + 5))); //la velocidad es inversamente proporcional a la distancia con la Tierra
+		//probar con otras ecuaciones de velocidad
 	}
 
 	void Update () 
@@ -37,9 +42,9 @@ public class TrashController : MonoBehaviour
 	{
 		//si no se magnetizo, la basura "orbita" la tierra
 
-		this.transform.Translate (Vector3.right * speed * Time.deltaTime);
+		this.transform.Translate (Vector3.right * speed * Time.deltaTime); //se desplaza a la derecha
 
-		if (this.transform.position.x >= 10) {
+		if (this.transform.position.x >= 10) { //si llega al limite derecho, reinicia en la izquierda
 			Vector3 resetPos = new Vector3 (-10, this.transform.position.y, 0);
 			this.transform.position = resetPos;
 		}
@@ -47,7 +52,18 @@ public class TrashController : MonoBehaviour
 
 	void FollowMagnet()
 	{
-		Debug.Log (this.name + " ha sido magnetizado");
+		//persigue al iman
+
+		target = GameObject.FindGameObjectWithTag ("Magnet").transform; //busca al iman
+
+		targetSpeed = GameObject.FindGameObjectWithTag ("Player").gameObject.GetComponent<PlayerController> ().speed;
+
+		newPosX = Mathf.Lerp( this.transform.position.x, target.position.x, targetSpeed * Time.deltaTime); //nuevo X aproximado al iman
+		newPosY = Mathf.Lerp( this.transform.position.y, target.position.y, targetSpeed * Time.deltaTime); //nueva Y aproximado al iman
+
+		newPos = new Vector2 (newPosX, newPosY); //nueva posicion aproximada al iman
+
+		this.transform.position = newPos; //se aproxima al iman
 	}
 
 	void ThrowTrash()

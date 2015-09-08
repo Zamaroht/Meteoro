@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
 	{
 		magnetSwitch = false;
 		speed = 0.0f;
-		minSpeed = 0.015f;
-		maxSpeed = 0.15f;
-		acceleration = 0.15f;
+		minSpeed = 1.5f;
+		maxSpeed = 7.5f;
+		acceleration = 1.5f;
 	}
 
 	void FixedUpdate()
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 	{
 		// Controles temporales, despues los hacemos mas lindos
 
-		transform.position = transform.position + (transform.up * speed); // Movimiento Constante
+		transform.position = transform.position + (transform.up * speed * Time.deltaTime); // Movimiento Constante
 
 		if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow))	// Aceleracion
 		{
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{ 
-			speed = speed - (acceleration * 2 *Time.deltaTime);	// Desaceleracion
+			speed = Mathf.Lerp(speed, minSpeed, 1f * Time.deltaTime);	// Desaceleracion
 		}
 
 		if (Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.LeftArrow)) 	// Rotacion izquierda

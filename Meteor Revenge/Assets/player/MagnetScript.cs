@@ -9,7 +9,7 @@ public class MagnetScript : MonoBehaviour
 	GameObject[] trash;
 	float trashDistance;
 
-	float magnetRange = 2f;
+	float magnetRange = 1.5f;
 
 	public bool enabled;
 
