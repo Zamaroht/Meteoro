@@ -3,16 +3,28 @@ using System.Collections;
 
 public class TrashController : MonoBehaviour 
 {
-	Transform target;
-	float targetSpeed;
+	float speed = 1f;
 
+	Transform target;
+	float targetSpeed = 0;
 	Vector2 newPos;
-	public float speed = 1f;
 	float newPosX = 0, newPosY = 0;
+
+	Transform aim;
+	Vector2 aimPoint;
+	Vector2 dischargeTarget;
+	float aimPointX = 0, aimPointY = 0;
+	float shootSpeed = 0;
+	bool discharged = false;
+
 	public bool magnetedOnce, magnetedNow;
 
 	void Awake()
 	{
+		GameObject.Find ("GameController").GetComponent<GameController> ().trashCount++;
+
+		IniProps ();
+
 		magnetedOnce = false;
 		magnetedNow = false;
 
@@ -38,7 +50,20 @@ public class TrashController : MonoBehaviour
 		}
 	}
 
-	void OrbitEarth()
+	void IniProps()
+	{
+		//Escala al azar
+		float scaleMultiplier = Random.Range (0.5f, 1f);
+
+		float newScaleX = this.transform.localScale.x * scaleMultiplier;
+		float newScaleY = this.transform.localScale.y * scaleMultiplier;
+
+		Vector2 newScale = new Vector2 (newScaleX, newScaleY);
+
+		this.transform.localScale = newScale;
+	}
+
+	void OrbitEarth	()
 	{
 		//si no se magnetizo, la basura "orbita" la tierra
 
@@ -58,8 +83,13 @@ public class TrashController : MonoBehaviour
 
 		targetSpeed = GameObject.FindGameObjectWithTag ("Player").gameObject.GetComponent<PlayerController> ().speed;
 
-		newPosX = Mathf.Lerp( this.transform.position.x, target.position.x, targetSpeed * Time.deltaTime); //nuevo X aproximado al iman
-		newPosY = Mathf.Lerp( this.transform.position.y, target.position.y, targetSpeed * Time.deltaTime); //nueva Y aproximado al iman
+		if (targetSpeed>=5)
+		{
+			targetSpeed = 5;	
+		}
+
+		newPosX = Mathf.Lerp( this.transform.position.x, target.position.x, 15 / targetSpeed * Time.deltaTime); //nuevo X aproximado al iman
+		newPosY = Mathf.Lerp( this.transform.position.y, target.position.y, 15 / targetSpeed * Time.deltaTime); //nueva Y aproximado al iman
 
 		newPos = new Vector2 (newPosX, newPosY); //nueva posicion aproximada al iman
 
@@ -68,6 +98,27 @@ public class TrashController : MonoBehaviour
 
 	void ThrowTrash()
 	{
-		Debug.Log (this.name + " ha sido desmagnetizado");
+		//suelta la basura y esta se dirige a donde apuntaba la nave
+		if (!discharged)
+		{
+			discharged = true;
+
+			aim = GameObject.FindGameObjectWithTag ("Aim").transform;
+
+			shootSpeed = targetSpeed;
+			if (shootSpeed >= 2.5f)
+			{
+				shootSpeed = 2.5f;
+			}
+
+			aimPoint = aim.position;
+		}
+
+		aimPointX  = Mathf.Lerp( this.transform.position.x, aimPoint.x, shootSpeed / 15 * Time.deltaTime);
+		aimPointY = Mathf.Lerp( this.transform.position.y, aimPoint.y, shootSpeed / 15 * Time.deltaTime);
+		
+		dischargeTarget = new Vector2 (aimPointX, aimPointY);
+		
+		this.transform.position = dischargeTarget;
 	}
 }

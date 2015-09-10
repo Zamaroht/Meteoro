@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 	//Controla algunos aspectos basicos
 
 	public GameObject player, background, earth;
+	public int trashCount = 0;
 
 	private bool gameStarted = false;
 	private bool gamePaused = false;
